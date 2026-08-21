@@ -4,10 +4,10 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Araç Kiralama Sözleşmesi - Online İmza</title>
-  <script src="./Araç Kiralama Sözleşmesi - Online İmza_files/signature_pad.umd.min.js.indir"></script>
-  <script src="./Araç Kiralama Sözleşmesi - Online İmza_files/pdfmake.min.js.indir"></script>
-  <script src="./Araç Kiralama Sözleşmesi - Online İmza_files/vfs_fonts.min.js.indir"></script>
-  <script src="./Araç Kiralama Sözleşmesi - Online İmza_files/qrcode.min.js.indir"></script>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.2.0/dist/signature_pad.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     :root{
       --bg:#f3f5f8;--card:#ffffff;--text:#0f172a;--muted:#64748b;--line:#d8dee9;
@@ -204,7 +204,6 @@ async function createPdf(){
   try{
     const dd = pdfDefinition(name, docNo, date, signatureData);
     pdfMake.createPdf(dd).getBlob(async function(blob){
-      await saveBlobToServer(blob, filename, name, docNo, date);
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
